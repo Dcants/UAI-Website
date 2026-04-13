@@ -1,2 +1,0 @@
-<!-- Placeholder for favicon.ico -->
-<!-- In a real project, replace this with an actual favicon image file -->
