@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generative Sales Workflow</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: transparent !important;
+    margin: 0;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .workflow-wrap {
+    width: 100%;
+    height: 100%;
+    transform: scale(0.85);
+    position: relative;
+    z-index: 1;
+    background: transparent;
+    border-radius: 20px;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+  }
+
+  svg { 
+    width: 100%; 
+    height: 100%; 
+    overflow: visible; 
+  }
+
+  .node { stroke-width: 2.5; animation: pulseNode 2s infinite alternate; }
+  .node-magenta { fill: #020812; stroke: #ff00cc; filter: drop-shadow(0 0 6px #ff00cc); }
+  .node-cyan { fill: #020812; stroke: #00ffee; filter: drop-shadow(0 0 6px #00ffee); }
+  .node-blue { fill: #020812; stroke: #00aaff; filter: drop-shadow(0 0 6px #00aaff); }
+  
+  .node-center { fill: #00ffee; filter: drop-shadow(0 0 12px #00ffee); animation: pulseCenter 1.5s infinite alternate; }
+  .node-end { fill: #ff00cc; filter: drop-shadow(0 0 15px #ff00cc); animation: pulseEnd 1.5s infinite alternate; }
+  
+  .line { fill: none; stroke-width: 2; stroke-dasharray: 6 6; opacity: 0.4; }
+  .line-magenta { stroke: #ff00cc; animation: march 15s linear infinite; }
+  .line-cyan { stroke: #00ffee; animation: march 15s linear infinite reverse; }
+  .line-blue { stroke: #00aaff; animation: march 15s linear infinite; }
+  
+  @keyframes pulseNode { 0% { r: 6; } 100% { r: 9; } }
+  @keyframes pulseCenter { 0% { r: 14; opacity: 0.8; } 100% { r: 18; opacity: 1; } }
+  @keyframes pulseEnd { 0% { r: 16; opacity: 0.8; } 100% { r: 20; opacity: 1; } }
+  @keyframes march { from { stroke-dashoffset: 0; } to { stroke-dashoffset: 200; } }
+</style>
+</head>
+<body>
+  <div class="workflow-wrap">
+    <svg viewBox="0 0 360 240" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="3" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <path id="p1" d="M 60 60 Q 120 60, 180 120" />
+        <path id="p2" d="M 60 120 L 180 120" />
+        <path id="p3" d="M 60 180 Q 120 180, 180 120" />
+        <path id="p4" d="M 180 120 L 300 120" />
+      </defs>
+
+      <use href="#p1" class="line line-magenta" />
+      <use href="#p2" class="line line-cyan" />
+      <use href="#p3" class="line line-blue" />
+      <use href="#p4" class="line line-cyan" stroke-width="3" stroke-dasharray="0" opacity="0.6" />
+
+      <circle r="4" fill="#ff00cc" filter="url(#glow)">
+        <animateMotion dur="2s" repeatCount="indefinite"><mpath href="#p1"/></animateMotion>
+      </circle>
+      <circle r="4" fill="#00ffee" filter="url(#glow)">
+        <animateMotion dur="1.5s" repeatCount="indefinite"><mpath href="#p2"/></animateMotion>
+      </circle>
+      <circle r="4" fill="#00aaff" filter="url(#glow)">
+        <animateMotion dur="2.5s" repeatCount="indefinite"><mpath href="#p3"/></animateMotion>
+      </circle>
+      
+      <circle r="5.5" fill="#fff" filter="url(#glow)">
+        <animateMotion dur="1s" repeatCount="indefinite"><mpath href="#p4"/></animateMotion>
+      </circle>
+      <circle r="5.5" fill="#fff" filter="url(#glow)">
+        <animateMotion dur="1s" begin="0.5s" repeatCount="indefinite"><mpath href="#p4"/></animateMotion>
+      </circle>
+
+      <circle cx="60" cy="60" class="node node-magenta" />
+      <circle cx="60" cy="120" class="node node-cyan" />
+      <circle cx="60" cy="180" class="node node-blue" />
+
+      <circle cx="180" cy="120" class="node-center" />
+      <circle cx="180" cy="120" r="24" fill="none" stroke="#00ffee" stroke-width="1.5" opacity="0.5">
+         <animate attributeName="r" values="18; 35; 18" dur="1.5s" repeatCount="indefinite"/>
+         <animate attributeName="opacity" values="0.8; 0; 0.8" dur="1.5s" repeatCount="indefinite"/>
+      </circle>
+
+      <circle cx="300" cy="120" class="node-end" />
+      <circle cx="300" cy="120" r="8" fill="#fff" opacity="0.9" />
+    </svg>
+  </div>
+</body>
+</html>

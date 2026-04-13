@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voice Receptionist Soundwave</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: transparent !important;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .soundwave-wrap {
+    width: 100%;
+    height: 100%;
+    transform: scale(0.85);
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 40px;
+    background: transparent;
+    border-radius: 20px;
+  }
+
+  .bar {
+    width: 14px;
+    border-radius: 20px;
+    background: #fff;
+    animation: wave 1.2s ease-in-out infinite alternate;
+    transform-origin: center;
+  }
+
+  /* Apply your logo's neon colors and glow */
+  .bar:nth-child(3n+1) { 
+    background: #00ffee; 
+    box-shadow: 0 0 15px #00ffee, 0 0 5px #00ffee inset; 
+  }
+  .bar:nth-child(3n+2) { 
+    background: #ff00cc; 
+    box-shadow: 0 0 15px #ff00cc, 0 0 5px #ff00cc inset; 
+  }
+  .bar:nth-child(3n+3) { 
+    background: #00aaff; 
+    box-shadow: 0 0 15px #00aaff, 0 0 5px #00aaff inset; 
+  }
+
+  /* Stagger the animation delays and base heights to create the wave shape */
+  .bar:nth-child(1)  { height: 30px;  animation-delay: 0.0s; }
+  .bar:nth-child(2)  { height: 60px;  animation-delay: 0.1s; }
+  .bar:nth-child(3)  { height: 100px; animation-delay: 0.2s; }
+  .bar:nth-child(4)  { height: 140px; animation-delay: 0.3s; }
+  .bar:nth-child(5)  { height: 160px; animation-delay: 0.4s; }
+  .bar:nth-child(6)  { height: 140px; animation-delay: 0.5s; }
+  .bar:nth-child(7)  { height: 100px; animation-delay: 0.6s; }
+  .bar:nth-child(8)  { height: 60px;  animation-delay: 0.7s; }
+  .bar:nth-child(9)  { height: 30px;  animation-delay: 0.8s; }
+
+  @keyframes wave {
+    0% { transform: scaleY(0.15); opacity: 0.5; }
+    100% { transform: scaleY(1); opacity: 1; filter: brightness(1.3); }
+  }
+</style>
+</head>
+<body>
+  <div class="soundwave-wrap">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+</body>
+</html>
